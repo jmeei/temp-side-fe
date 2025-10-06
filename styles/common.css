@@ -1,0 +1,505 @@
+body {
+  background: linear-gradient(180deg, #3a256b 0%, #1a1d3a 100%);
+  color: #fff;
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: linear-gradient(94.4deg, #0f163b 0%, #471861 50%, #203387 100%);
+}
+
+.font-secondary {
+  font-family: "Gidugu", sans-serif;
+}
+
+.navbar {
+  font-family: "Gidugu", sans-serif;
+  font-weight: 400;
+  background: linear-gradient(94.4deg, #120d47 0%, #282253 50%, #171b4a 100%);
+}
+
+.navbar-nav .nav-link {
+  padding: 0 !important;
+  border-radius: 5px;
+}
+
+.navbar-nav .nav-link__inner {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.6rem;
+  padding: 0.1rem 1.25rem;
+}
+
+.navbar-nav .nav-link.super {
+  background: linear-gradient(180deg, #c5ffff 0%, #eb7cff 50%, #6d81ff 100%);
+  padding: 2px !important;
+}
+
+.navbar-nav .nav-link.super .nav-link__inner {
+  background: linear-gradient(
+    320.1deg,
+    #000a3c 22.77%,
+    #360053 50.25%,
+    #000e4b 77.23%
+  );
+  border-radius: 5px;
+}
+
+.navbar-nav .nav-link.super i {
+  width: 24px;
+  height: 24px;
+}
+
+.page-divider {
+  background: linear-gradient(
+    90deg,
+    rgba(67, 83, 163, 0) 0%,
+    #8b9ef4 49.04%,
+    rgba(139, 158, 244, 0) 100%
+  );
+  width: 100%;
+  height: 0.5px;
+  opacity: 0.8;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.navbar-right .btn {
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.3rem 1.2rem;
+}
+
+.online-dot {
+  background-color: #00dc72;
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  margin-left: 0.3rem;
+}
+
+.online-text {
+  color: #00dc72;
+  font-size: 0.9rem;
+  margin-left: 0.2rem;
+}
+
+.main-banner {
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.main-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.main-banner .col-lg-8 {
+  padding-right: 0.7rem;
+}
+
+.main-banner .col-lg-4 .row > div {
+  margin-bottom: 0.7rem;
+}
+
+.main-banner .col-lg-4 .main-banner-img {
+  height: 85px;
+}
+
+.welcome-bar {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+
+.game-card {
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+}
+
+.game-card .game-card-img {
+  width: 100%;
+}
+
+.promo-jackpot-row {
+  background-color: #070f37;
+  padding: 1rem;
+}
+
+.promo-box,
+.deposit-box {
+  background: #000936;
+  border-radius: 12px;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.promo-title,
+.deposit-title {
+  font-family: "Gidugu", sans-serif;
+  background: #17204c;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.promo-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  padding: 1rem;
+}
+
+.promo-icons .promo-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.3rem;
+  color: #f6e7b2;
+}
+
+.promo-icons .promo-icon img {
+  width: 100%;
+  height: 60px;
+  object-fit: contain;
+}
+
+.promo-icons .promo-label {
+  font-size: 0.7rem;
+  color: #fff;
+  margin-top: 0.2rem;
+  line-height: 1.2;
+  display: block;
+  text-align: center;
+}
+
+.jackpot-box {
+  background: #10122a;
+  border-radius: 12px;
+  padding: 1.2rem 1rem;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.jackpot-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #f6e7b2;
+  margin-bottom: 0.5rem;
+}
+
+.jackpot-amount {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #f6e7b2;
+  letter-spacing: 0.2rem;
+  background: #23244a;
+  border-radius: 10px;
+  padding: 0.2rem 1.2rem;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  color: #fff;
+}
+
+.hot-section {
+  background: #10122a;
+  border-radius: 12px;
+  padding: 1.2rem 1rem;
+  min-height: 270px;
+}
+
+.hot-section .section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.8rem;
+}
+
+.hot-section .fa-fire {
+  color: #ff5e5e;
+}
+
+.hot-games-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.hot-game-card {
+  background: #23244a;
+  border-radius: 10px;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+}
+
+.hot-game-img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.main-content-row {
+  margin-bottom: 1.2rem;
+}
+
+.main-content-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.aspect-square {
+  aspect-ratio: 1/1;
+}
+
+.winner-section {
+  border-radius: 10px;
+  min-height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../images/winner-bg.png");
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  aspect-ratio: 1 / 0.4;
+}
+.winner-section .winner-img {
+  position: absolute;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  padding: 10px 0 0 10px;
+  border-radius: 12px;
+}
+
+.winner-section .winner-amount {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  position: absolute;
+  z-index: 2;
+  bottom: 30px;
+  left: 50px;
+}
+
+.top-winner-list {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background: #00000080;
+  padding: 1rem;
+  height: 100%;
+}
+
+.top-winner-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.top-winner-item:after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin: 10px 0;
+  background: linear-gradient(
+    90deg,
+    rgba(67, 83, 163, 0) 0%,
+    #ffd56c 49.04%,
+    rgba(139, 158, 244, 0) 100%
+  );
+}
+
+.top-winner-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.2rem;
+}
+
+.top-winner-amount {
+  color: #00ff00;
+}
+
+.footer {
+  background: none;
+  padding: 2rem 0 1rem 0;
+  margin-top: 2rem;
+}
+
+.footer .about-section,
+.footer .help-section {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.footer .about-title,
+.footer .help-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.footer .about-list,
+.footer .help-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #7d8dac;
+  font-size: 0.8rem;
+}
+
+.footer .about-list li,
+.footer .help-list li {
+  margin-bottom: 0.3rem;
+}
+
+.footer .social-icons {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  background: #000522;
+  padding: 1rem;
+  border-radius: 10px;
+  justify-content: center;
+}
+
+.footer .social-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer .social-icon img {
+  width: 100%;
+}
+
+.footer .footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+  gap: 2rem;
+}
+
+.footer .footer-logos {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer .footer-logos img {
+  height: 38px;
+  object-fit: contain;
+}
+
+/*  Buttons  */
+.btn {
+  border-radius: 12px;
+}
+
+.btn-gold {
+  color: white;
+  text-shadow: 0.5px 0.5px black;
+  background: radial-gradient(
+    71.52% 180.92% at 71.52% 73.3%,
+    #c8a064 0%,
+    #dbc59e 42%,
+    #e9d69b 84%,
+    #fcf1d1 100%
+  );
+}
+
+.btn-silver {
+  color: white;
+  text-shadow: 0.5px 0.5px black;
+  background: linear-gradient(
+    0deg,
+    var(--Color02, #84828a),
+    var(--Color02, #b8b8b8)
+  );
+}
+
+.btn-icon {
+  border: 0px;
+  display: block;
+  background-color: transparent;
+}
+
+/* Icons */
+.icon-btn {
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.icon-btn-lg {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-btn--wallet {
+  background-image: url("../images/icons/wallet.png");
+}
+.icon-btn--user {
+  background-image: url("../images/icons/user.png");
+}
+.icon-btn--chat {
+  background-image: url("../images/icons/chat.png");
+}
+.icon-btn--hot {
+  background-image: url("../images/icons/hot.png");
+}
+.icon-btn--lang-uk {
+  background-image: url("../images/icons/lang-uk.png");
+}
