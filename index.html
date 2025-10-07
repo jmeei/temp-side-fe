@@ -543,18 +543,25 @@
                                         <div class="invalid-feedback">Please enter a valid phone number.</div>
                                     </div>
 
-                                    <div class="mb-2 input-icon">
-                                        <input type="password" class="form-control" id="loginPassword" name="password"
-                                            placeholder="Password" aria-label="Password" required minlength="6" />
-                                        <i class="fa-solid fa-lock form-control-icon" aria-hidden="true"></i>
+                                    <!-- Login password with eye toggle -->
+                                    <div class="mb-2">
+                                        <div class="input-group input-icon">
+                                            <i class="fa-solid fa-lock form-control-icon" aria-hidden="true"></i>
+                                            <input type="password" class="form-control" id="loginPassword"
+                                                name="password" placeholder="Password" aria-label="Password" required
+                                                minlength="6" />
+                                            <button class="btn btn-outline-secondary form-control-right-btn icon-only"
+                                                type="button" id="toggleLoginPassword" aria-label="Show password">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                        </div>
                                         <div class="invalid-feedback">Please enter your password (min 6 characters).
                                         </div>
                                     </div>
 
                                     <div class="d-flex justify-content-center align-items-center mt-3 mb-3">
                                         <div class="font-xs">
-                                            Forgot
-                                            <a href="#" id="forgotPasswordLink" class="small">password</a> ?
+                                            Forgot <a href="#" id="forgotPasswordLink" class="small">password</a> ?
                                         </div>
                                     </div>
 
@@ -567,7 +574,8 @@
                                     </div>
 
                                     <div class="d-flex justify-content-center align-items-center mt-3 mb-3">
-                                        <div class="small">No account yet? <a href="">Register</a></div>
+                                        <div class="small">No account yet? <a href="#"
+                                                id="registerLinkInLogin">Register</a></div>
                                     </div>
                                 </form>
                             </div>
@@ -599,18 +607,34 @@
                                         <div class="invalid-feedback">Enter a valid code (4–8 digits).</div>
                                     </div>
 
-                                    <div class="mb-3 input-icon">
-                                        <input type="password" class="form-control" id="registerPassword"
-                                            name="password" placeholder="Password" aria-label="Password" required
-                                            minlength="6" />
-                                        <i class="fa-solid fa-lock form-control-icon" aria-hidden="true"></i>
+                                    <!-- Register password with eye toggle -->
+                                    <div class="mb-3">
+                                        <div class="input-group input-icon">
+                                            <i class="fa-solid fa-lock form-control-icon" aria-hidden="true"></i>
+                                            <input type="password" class="form-control" id="registerPassword"
+                                                name="password" placeholder="Password" aria-label="Password" required
+                                                minlength="6" />
+                                            <button class="btn btn-outline-secondary form-control-right-btn icon-only"
+                                                type="button" id="toggleRegisterPassword" aria-label="Show password">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                        </div>
                                         <div class="invalid-feedback">Please enter a password (min 6 characters).</div>
                                     </div>
-                                    <div class="mb-3 input-icon">
-                                        <input type="password" class="form-control" id="registerPasswordConfirm"
-                                            name="passwordConfirm" placeholder="Confirm password"
-                                            aria-label="Confirm password" required minlength="6" />
-                                        <i class="fa-solid fa-lock form-control-icon" aria-hidden="true"></i>
+
+                                    <!-- Confirm password with eye toggle -->
+                                    <div class="mb-3">
+                                        <div class="input-group input-icon">
+                                            <i class="fa-solid fa-lock form-control-icon" aria-hidden="true"></i>
+                                            <input type="password" class="form-control" id="registerPasswordConfirm"
+                                                name="passwordConfirm" placeholder="Confirm password"
+                                                aria-label="Confirm password" required minlength="6" />
+                                            <button class="btn btn-outline-secondary form-control-right-btn icon-only"
+                                                type="button" id="toggleRegisterPasswordConfirm"
+                                                aria-label="Show password">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </button>
+                                        </div>
                                         <div class="invalid-feedback">Passwords must match.</div>
                                     </div>
 
@@ -632,7 +656,8 @@
                                     </div>
 
                                     <div class="d-flex justify-content-center align-items-center mt-3 mb-3">
-                                        <div class="small">Already have an account? <a href="">Login</a></div>
+                                        <div class="small">Already have an account? <a href="#"
+                                                id="loginLinkInRegister">Login</a></div>
                                     </div>
                                 </form>
                             </div>
@@ -687,6 +712,25 @@
 
         const loginTabBtn = document.getElementById("login-tab");
         const registerTabBtn = document.getElementById("register-tab");
+
+        const loginLinkInRegister = document.getElementById("loginLinkInRegister");
+        if (loginLinkInRegister && loginTabBtn && window.bootstrap?.Tab) {
+            loginLinkInRegister.addEventListener("click", (e) => {
+                e.preventDefault();
+                new bootstrap.Tab(loginTabBtn).show();
+                // optional: focus first field
+                setTimeout(() => document.getElementById("loginPhone")?.focus(), 150);
+            });
+        }
+
+        const registerLinkInLogin = document.getElementById("registerLinkInLogin");
+        if (registerLinkInLogin && registerTabBtn && window.bootstrap?.Tab) {
+            registerLinkInLogin.addEventListener("click", (e) => {
+                e.preventDefault();
+                new bootstrap.Tab(registerTabBtn).show();
+                setTimeout(() => document.getElementById("registerPhone")?.focus(), 150);
+            });
+        }
 
         function showTab(tabBtnEl) {
             const tab = new bootstrap.Tab(tabBtnEl);
@@ -842,6 +886,35 @@
                 requestCodeBtn.textContent = "Request code";
             }
         });
+
+        // Helper: bind a toggle button to show/hide a password field
+        function bindPasswordToggle(inputId, buttonId) {
+            const input = document.getElementById(inputId);
+            const btn = document.getElementById(buttonId);
+            if (!input || !btn) return;
+
+            const icon = btn.querySelector("i");
+            btn.addEventListener("click", () => {
+                const showing = input.type === "text";
+                input.type = showing ? "password" : "text";
+                // Swap icon and aria-label
+                if (icon) {
+                    icon.classList.toggle("fa-eye", showing);
+                    icon.classList.toggle("fa-eye-slash", !showing);
+                }
+                btn.setAttribute("aria-label", showing ? "Show password" : "Hide password");
+                // Keep cursor at end
+                input.focus();
+                input.setSelectionRange(input.value.length, input.value.length);
+            });
+        }
+
+        // Wire up all password toggles
+        bindPasswordToggle("loginPassword", "toggleLoginPassword");
+        bindPasswordToggle("registerPassword", "toggleRegisterPassword");
+        bindPasswordToggle("registerPasswordConfirm", "toggleRegisterPasswordConfirm");
+
+
     </script>
 </body>
 

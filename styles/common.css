@@ -622,8 +622,7 @@ header {
   grid-template-columns: repeat(5, minmax(0, 1fr));
   border-radius: 20px;
   border: 5px solid rgba(255, 255, 255, 0.1);
-
-  min-height: 60vh;
+  min-height: 65vh;
 }
 
 .modal-auth .modal-auth-left {
@@ -779,4 +778,9 @@ header {
   color: white;
   font-weight: 500;
   border: none;
+}
+
+.form-control-right-btn.icon-only {
+  top: 0.6rem;
+  background: transparent;
 }
