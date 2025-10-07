@@ -10,6 +10,7 @@
     </style>
     <link rel="stylesheet" href="lib/bootstrap.min.css" />
     <link rel="stylesheet" href="styles/common.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css" />
 </head>
 
 <body>
@@ -423,6 +424,7 @@
             </div>
         </div>
     </div>
+
     <!-- Footer -->
     <div class="container-fluid footer px-4">
         <div class="row">
@@ -498,6 +500,320 @@
             </div>
         </div>
     </div>
+
+    <!-- Auth model -->
+    <div class="modal fade modal-fullscreen modal-auth" id="authModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-auth-left">
+                    <div class="modal-header flex-column p-0">
+                        <img src="images/logo.png" alt="Logo" width="150" class="align-self-start">
+                        <ul class="nav nav-tabs w-100 auth-tabs px-3 pt-3" id="authTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="login-tab" data-bs-toggle="tab"
+                                    data-bs-target="#login-pane" type="button" role="tab" aria-controls="login-pane"
+                                    aria-selected="true">
+                                    Login
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="register-tab" data-bs-toggle="tab"
+                                    data-bs-target="#register-pane" type="button" role="tab"
+                                    aria-controls="register-pane" aria-selected="false">
+                                    Register
+                                </button>
+                            </li>
+                        </ul>
+                        <button type="button" class="btn-close position-absolute end-0 mt-2 me-2"
+                            data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="tab-content" id="authTabsContent">
+
+                            <!-- Login tab -->
+                            <div class="tab-pane fade show active" id="login-pane" role="tabpanel"
+                                aria-labelledby="login-tab" tabindex="0">
+                                <form id="loginForm" novalidate>
+                                    <div class="mb-3">
+                                        <label for="loginPhone" class="form-label">Phone number</label>
+                                        <input type="tel" class="form-control" id="loginPhone" name="phone" required />
+                                        <div class="invalid-feedback">Please enter a valid phone number.</div>
+                                    </div>
+
+                                    <div class="mb-2">
+                                        <label for="loginPassword" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="loginPassword" name="password"
+                                            required minlength="6" />
+                                        <div class="invalid-feedback">Please enter your password (min 6 characters).
+                                        </div>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <a href="#" id="forgotPasswordLink" class="small">Forgot my password</a>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                                </form>
+                            </div>
+
+                            <!-- Register tab -->
+                            <div class="tab-pane fade" id="register-pane" role="tabpanel" aria-labelledby="register-tab"
+                                tabindex="0">
+                                <form id="registerForm" novalidate>
+                                    <div class="mb-3">
+                                        <label for="registerPhone" class="form-label">Phone number</label>
+                                        <input type="tel" class="form-control" id="registerPhone" name="phone"
+                                            required />
+                                        <div class="invalid-feedback">Please enter a valid phone number.</div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="verificationCode" class="form-label">Verification code</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="verificationCode" name="code"
+                                                inputmode="numeric" pattern="[0-9]{4,8}" required
+                                                aria-describedby="codeHelp" />
+                                            <button class="btn btn-outline-secondary" type="button" id="requestCodeBtn">
+                                                Request code
+                                            </button>
+                                        </div>
+                                        <div id="codeHelp" class="form-text">Enter the code sent to your phone.</div>
+                                        <div class="invalid-feedback">Enter a valid code (4–8 digits).</div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="registerPassword" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="registerPassword"
+                                            name="password" required minlength="6" />
+                                        <div class="invalid-feedback">Please enter a password (min 6 characters).</div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="registerPasswordConfirm" class="form-label">Confirm password</label>
+                                        <input type="password" class="form-control" id="registerPasswordConfirm"
+                                            name="passwordConfirm" required minlength="6" />
+                                        <div class="invalid-feedback">Passwords must match.</div>
+                                    </div>
+
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="ageConfirm" required />
+                                        <label class="form-check-label" for="ageConfirm">
+                                            I confirm I am at least 18 years old
+                                        </label>
+                                        <div class="invalid-feedback">You must confirm your age to continue.</div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-success w-100">Register</button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-auth-right"></div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <!-- intl-tel-input JS -->
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js"></script>
+
+    <script>
+        // Helpers
+        function geoIpLookup(callback) {
+            // Lightweight country lookup for initial country
+            fetch("https://ipapi.co/country/")
+                .then((res) => res.ok ? res.text() : "")
+                .then((countryCode) => callback(countryCode || "US"))
+                .catch(() => callback("US"));
+        }
+
+        function initIntlTelInput(input) {
+            return window.intlTelInput(input, {
+                initialCountry: "auto",
+                geoIpLookup,
+                utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js",
+                separateDialCode: true,
+                nationalMode: false
+            });
+        }
+
+        function setPhoneValidity(iti, inputEl) {
+            const isValid = inputEl.value.trim() !== "" && iti.isValidNumber();
+            inputEl.setCustomValidity(isValid ? "" : "invalid");
+            inputEl.classList.toggle("is-invalid", !isValid);
+            return isValid;
+        }
+
+        // Modal & Tabs
+        const authModalEl = document.getElementById("authModal");
+        const authModal = new bootstrap.Modal(authModalEl);
+
+        const loginTabBtn = document.getElementById("login-tab");
+        const registerTabBtn = document.getElementById("register-tab");
+
+        function showTab(tabBtnEl) {
+            const tab = new bootstrap.Tab(tabBtnEl);
+            tab.show();
+        }
+
+        // Wire up your existing buttons by class names:
+        const loginTrigger = document.querySelector(".btn.btn-silver");
+        const registerTrigger = document.querySelector(".btn.btn-gold");
+
+        if (loginTrigger) {
+            loginTrigger.addEventListener("click", () => {
+                showTab(loginTabBtn);
+                authModal.show();
+                setTimeout(() => document.getElementById("loginPhone")?.focus(), 200);
+            });
+        }
+        if (registerTrigger) {
+            registerTrigger.addEventListener("click", () => {
+                showTab(registerTabBtn);
+                authModal.show();
+                setTimeout(() => document.getElementById("registerPhone")?.focus(), 200);
+            });
+        }
+
+        // Initialize phone inputs
+        const loginPhoneInput = document.getElementById("loginPhone");
+        const registerPhoneInput = document.getElementById("registerPhone");
+        const itiLogin = initIntlTelInput(loginPhoneInput);
+        const itiRegister = initIntlTelInput(registerPhoneInput);
+
+        loginPhoneInput.addEventListener("blur", () => setPhoneValidity(itiLogin, loginPhoneInput));
+        registerPhoneInput.addEventListener("blur", () => setPhoneValidity(itiRegister, registerPhoneInput));
+
+        // Forgot password link (stub)
+        document.getElementById("forgotPasswordLink").addEventListener("click", (e) => {
+            e.preventDefault();
+            // Replace this with your real flow (open another modal, etc.)
+            alert("Password reset: We will send reset instructions to your phone.");
+        });
+
+        // Request verification code
+        const requestCodeBtn = document.getElementById("requestCodeBtn");
+        let codeTimer = null;
+        let countdown = 0;
+
+        function startCountdown(seconds) {
+            countdown = seconds;
+            requestCodeBtn.disabled = true;
+            requestCodeBtn.textContent = `Resend in ${countdown}s`;
+            codeTimer = setInterval(() => {
+                countdown -= 1;
+                if (countdown <= 0) {
+                    clearInterval(codeTimer);
+                    requestCodeBtn.disabled = false;
+                    requestCodeBtn.textContent = "Request code";
+                } else {
+                    requestCodeBtn.textContent = `Resend in ${countdown}s`;
+                }
+            }, 1000);
+        }
+
+        requestCodeBtn.addEventListener("click", () => {
+            // Validate phone first
+            const phoneValid = setPhoneValidity(itiRegister, registerPhoneInput);
+            if (!phoneValid) {
+                registerPhoneInput.focus();
+                return;
+            }
+            const phoneE164 = itiRegister.getNumber();
+            // TODO: Call your backend to send the SMS code
+            // fetch("/api/send-code", { method: "POST", body: JSON.stringify({ phone: phoneE164 }) })
+
+            // Simulate sending code and start cooldown
+            startCountdown(60);
+        });
+
+        // Login form submit
+        const loginForm = document.getElementById("loginForm");
+        loginForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            // Validate phone with plugin
+            const phoneValid = setPhoneValidity(itiLogin, loginPhoneInput);
+
+            // HTML5 validation
+            loginForm.classList.add("was-validated");
+            const formValid = loginForm.checkValidity();
+
+            if (!phoneValid || !formValid) return;
+
+            const payload = {
+                phone: itiLogin.getNumber(), // E.164
+                password: document.getElementById("loginPassword").value
+            };
+
+            // TODO: Submit to your backend
+            // fetch("/api/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+
+            // Demo: close modal
+            authModal.hide();
+            console.log("Login payload", payload);
+        });
+
+        // Register form submit
+        const registerForm = document.getElementById("registerForm");
+        registerForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const pass = document.getElementById("registerPassword");
+            const pass2 = document.getElementById("registerPasswordConfirm");
+            const code = document.getElementById("verificationCode");
+            const age = document.getElementById("ageConfirm");
+
+            // Validate phone with plugin
+            const phoneValid = setPhoneValidity(itiRegister, registerPhoneInput);
+
+            // Passwords match validation
+            if (pass.value !== pass2.value) {
+                pass2.setCustomValidity("Passwords do not match");
+            } else {
+                pass2.setCustomValidity("");
+            }
+
+            registerForm.classList.add("was-validated");
+            const formValid = registerForm.checkValidity();
+
+            if (!phoneValid || !formValid) return;
+
+            const payload = {
+                phone: itiRegister.getNumber(), // E.164
+                code: code.value.trim(),
+                password: pass.value
+            };
+
+            // TODO: Submit to your backend
+            // fetch("/api/register", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+
+            // Demo: close modal
+            authModal.hide();
+            console.log("Register payload", payload);
+        });
+
+        // Optional: Reset forms when modal closes
+        authModalEl.addEventListener("hidden.bs.modal", () => {
+            [loginForm, registerForm].forEach((form) => {
+                form.reset();
+                form.classList.remove("was-validated");
+            });
+            [loginPhoneInput, registerPhoneInput].forEach((el) => el.classList.remove("is-invalid"));
+            if (codeTimer) {
+                clearInterval(codeTimer);
+                requestCodeBtn.disabled = false;
+                requestCodeBtn.textContent = "Request code";
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -1,3 +1,13 @@
+/* 
+primary = #cead78 
+*/
+
+:root {
+  --bs-primary: #cba064;
+  --bs-primary-lighter: #e9d69b;
+  --bs-link-color-rgb: 200, 160, 100;
+}
+
 body {
   background: linear-gradient(180deg, #3a256b 0%, #1a1d3a 100%);
   color: #fff;
@@ -502,4 +512,115 @@ header {
 }
 .icon-btn--lang-uk {
   background-image: url("../images/icons/lang-uk.png");
+}
+
+/* Auth model */
+.modal-auth {
+  background-image: url("../images//auth-bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.modal-auth .modal-header {
+  border: none;
+}
+
+.modal-auth .modal-dialog {
+  width: 100%;
+  max-width: 800px;
+}
+
+.modal-auth .modal-content {
+  background-image: url("../images//auth-gradient-bg.png");
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-radius: 20px;
+  border: 5px solid rgba(255, 255, 255, 0.1);
+
+  min-height: 60vh;
+}
+
+.modal-auth .modal-auth-left {
+  grid-column: span 3 / span 3;
+  padding: 2rem;
+}
+
+.modal-auth .modal-auth-right {
+  grid-column: span 2 / span 2;
+  background-image: url("../images/auth-side-bg.png");
+  background-position: left bottom;
+  background-size: cover;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.auth-tabs {
+  border-bottom: 0;
+}
+
+.auth-tabs .nav-link {
+  color: white;
+  font-family: "Gidugu", sans-serif;
+  font-size: 1.8rem;
+  position: relative;
+}
+
+.auth-tabs .nav-link:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0; /* adjust if you need more spacing from text */
+  width: 0; /* collapsed by default */
+  height: 2px; /* small border size */
+  background-color: white; /* primary color */
+  border-radius: 2px;
+  transition: width 220ms ease-in-out;
+}
+
+/* Hover/focus on non-active: expand underline */
+.auth-tabs .nav-link:hover:after,
+.auth-tabs .nav-link:focus-visible:after {
+  width: 30%; /* subtle underline length; use 100% if you want full width */
+}
+
+.auth-tabs .nav-link:hover {
+  border-color: transparent;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.auth-tabs .nav-link.active {
+  background-color: transparent;
+  border: transparent;
+  color: #cead78;
+}
+
+.auth-tabs .nav-link.active:after {
+  width: 30%;
+  background-color: #cead78;
+}
+
+/* inputs */
+.iti {
+  width: 100%;
+}
+
+.form-control {
+  border-radius: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 3px solid var(--bs-primary-lighter);
+  border-top: 0;
+  border-bottom: 0;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+.form-control:focus {
+  border-color: var(--bs-primary);
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: none;
+}
+
+.form-control.is-invalid:focus {
+  box-shadow: none;
 }
