@@ -6,6 +6,18 @@ primary = #cead78
   --bs-primary: #cba064;
   --bs-primary-lighter: #e9d69b;
   --bs-link-color-rgb: 200, 160, 100;
+  --bs-link-hover-color-rgb: 219, 197, 158;
+  --bs-secondary-color: rgb(255 255 255 / 30%);
+}
+
+a {
+  text-decoration: none;
+  border-bottom: 1px solid var(--bs-primary);
+}
+
+a:hover {
+  color: inherit;
+  border-color: white;
 }
 
 body {
@@ -468,6 +480,74 @@ header {
   );
 }
 
+/* Gold button base stays the same; add transitions and background-size for animation support */
+.btn-gold-alt {
+  color: black;
+  font-weight: 600;
+  background: radial-gradient(
+    71.52% 180.92% at 71.52% 73.3%,
+    #c8a064 0%,
+    #dbc59e 42%,
+    #e9d69b 84%,
+    #fcf1d1 100%
+  );
+
+  /* Added for smooth hover effects */
+  background-size: 200% 200%;
+  background-position: 50% 50%;
+  transition: box-shadow 250ms ease, transform 200ms ease,
+    background-position 500ms ease, filter 250ms ease;
+  will-change: box-shadow, transform, background-position, filter;
+}
+
+/* Default: glowing box-shadow on hover or keyboard focus */
+.btn-gold-alt:hover,
+.btn-gold-alt:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 0.125rem rgba(252, 241, 209, 0.45),
+    /* soft outline glow */ 0 0.25rem 0.75rem rgba(200, 160, 100, 0.5),
+    /* lift */ 0 0 1.25rem rgba(233, 214, 155, 0.7); /* ambient glow */
+  filter: saturate(1.05) brightness(1.04);
+}
+
+/* Optional: gradient sweep on hover.
+   Usage: add `glow-gradient` class to the button: <button class="btn-gold-alt glow-gradient">..</button> */
+.btn-gold-alt.glow-gradient:hover,
+.btn-gold-alt.glow-gradient:focus-visible {
+  animation: goldGradientPan 1.1s ease-in-out both;
+}
+
+@keyframes goldGradientPan {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 50% 50%;
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .btn-gold-alt {
+    transition: box-shadow 200ms ease, transform 200ms ease;
+  }
+  .btn-gold-alt.glow-gradient:hover,
+  .btn-gold-alt.glow-gradient:focus-visible {
+    animation: none;
+  }
+}
+
+.btn-gold-alt:active {
+  color: black;
+}
+
+.btn-gold-alt:hover {
+  color: black;
+}
+
 .btn-silver {
   color: white;
   text-shadow: 0.5px 0.5px black;
@@ -519,6 +599,12 @@ header {
   background-image: url("../images//auth-bg.png");
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.modal-auth .btn-close {
+  top: 0;
+  background-color: var(--bs-primary);
+  border-radius: 50%;
 }
 
 .modal-auth .modal-header {
@@ -601,6 +687,47 @@ header {
 }
 
 /* inputs */
+/* Input icon helpers */
+.input-icon {
+  position: relative;
+}
+.input-icon .form-control-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0.75rem;
+  color: #fff; /* force white icons */
+  pointer-events: none;
+  opacity: 1;
+  z-index: 3;
+  font-size: 1rem; /* adjust as needed */
+}
+.input-icon.icon-right .form-control-icon {
+  left: auto;
+  right: 0.75rem;
+}
+
+/* Pad to avoid overlapping the icon */
+.input-icon:not(.icon-right) .form-control {
+  padding-left: 2.25rem;
+}
+.input-group.input-icon:not(.icon-right) .form-control {
+  padding-left: 2.25rem;
+}
+.input-icon.icon-right .form-control {
+  padding-right: 2.25rem;
+}
+/* intl-tel-input nests an input inside .iti */
+.input-icon.icon-right .iti input {
+  padding-right: 2.25rem;
+}
+
+/* Keep icon white on focus as requested */
+.input-icon:focus-within .form-control-icon {
+  color: #fff;
+  opacity: 1;
+}
+
 .iti {
   width: 100%;
 }
@@ -615,6 +742,14 @@ header {
   padding-bottom: 0.6rem;
 }
 
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.form-control::-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .form-control:focus {
   border-color: var(--bs-primary);
   background-color: rgba(255, 255, 255, 0.5);
@@ -623,4 +758,25 @@ header {
 
 .form-control.is-invalid:focus {
   box-shadow: none;
+}
+
+.form-control-right-btn {
+  position: absolute !important;
+
+  z-index: 6 !important;
+  right: 0.5rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  border-radius: 5px !important;
+  background: radial-gradient(
+    71.52% 180.92% at 71.52% 73.3%,
+    #c8a064 0%,
+    #dbc59e 42%,
+    #e9d69b 84%,
+    #fcf1d1 100%
+  );
+  top: 0.3rem;
+  color: white;
+  font-weight: 500;
+  border: none;
 }

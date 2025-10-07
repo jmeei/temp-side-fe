@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="lib/bootstrap.min.css" />
     <link rel="stylesheet" href="styles/common.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 </head>
 
 <body>
@@ -508,7 +509,8 @@
                 <div class="modal-auth-left">
                     <div class="modal-header flex-column p-0">
                         <img src="images/logo.png" alt="Logo" width="150" class="align-self-start">
-                        <ul class="nav nav-tabs w-100 auth-tabs px-3 pt-3" id="authTabs" role="tablist">
+                        <ul class="nav nav-tabs w-100 auth-tabs px-3 pt-3 justify-content-center" id="authTabs"
+                            role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="login-tab" data-bs-toggle="tab"
                                     data-bs-target="#login-pane" type="button" role="tab" aria-controls="login-pane"
@@ -535,25 +537,38 @@
                             <div class="tab-pane fade show active" id="login-pane" role="tabpanel"
                                 aria-labelledby="login-tab" tabindex="0">
                                 <form id="loginForm" novalidate>
-                                    <div class="mb-3">
-                                        <label for="loginPhone" class="form-label">Phone number</label>
-                                        <input type="tel" class="form-control" id="loginPhone" name="phone" required />
+                                    <div class="mb-3 input-icon icon-right">
+                                        <input type="tel" class="form-control" id="loginPhone" name="phone"
+                                            placeholder="Phone number" aria-label="Phone number" required />
                                         <div class="invalid-feedback">Please enter a valid phone number.</div>
                                     </div>
 
-                                    <div class="mb-2">
-                                        <label for="loginPassword" class="form-label">Password</label>
+                                    <div class="mb-2 input-icon">
                                         <input type="password" class="form-control" id="loginPassword" name="password"
-                                            required minlength="6" />
+                                            placeholder="Password" aria-label="Password" required minlength="6" />
+                                        <i class="fa-solid fa-lock form-control-icon" aria-hidden="true"></i>
                                         <div class="invalid-feedback">Please enter your password (min 6 characters).
                                         </div>
                                     </div>
 
-                                    <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <a href="#" id="forgotPasswordLink" class="small">Forgot my password</a>
+                                    <div class="d-flex justify-content-center align-items-center mt-3 mb-3">
+                                        <div class="font-xs">
+                                            Forgot
+                                            <a href="#" id="forgotPasswordLink" class="small">password</a> ?
+                                        </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                                    <button type="submit" class="btn btn-gold-alt w-100">Login</button>
+
+                                    <div class="d-flex align-items-center my-3">
+                                        <hr class="flex-grow-1 m-0 opacity-25">
+                                        <span class="mx-3 small text-muted">or</span>
+                                        <hr class="flex-grow-1 m-0 opacity-25">
+                                    </div>
+
+                                    <div class="d-flex justify-content-center align-items-center mt-3 mb-3">
+                                        <div class="small">No account yet? <a href="">Register</a></div>
+                                    </div>
                                 </form>
                             </div>
 
@@ -561,50 +576,64 @@
                             <div class="tab-pane fade" id="register-pane" role="tabpanel" aria-labelledby="register-tab"
                                 tabindex="0">
                                 <form id="registerForm" novalidate>
-                                    <div class="mb-3">
-                                        <label for="registerPhone" class="form-label">Phone number</label>
+                                    <div class="mb-3 input-icon icon-right">
                                         <input type="tel" class="form-control" id="registerPhone" name="phone"
-                                            required />
+                                            placeholder="Phone number" aria-label="Phone number" required />
                                         <div class="invalid-feedback">Please enter a valid phone number.</div>
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="verificationCode" class="form-label">Verification code</label>
-                                        <div class="input-group">
+                                        <label for="verificationCode" class="visually-hidden">Verification code</label>
+                                        <div class="input-group input-icon">
+                                            <i class="fa-solid fa-shield-halved form-control-icon"
+                                                aria-hidden="true"></i>
                                             <input type="text" class="form-control" id="verificationCode" name="code"
+                                                placeholder="Verification code" aria-label="Verification code"
                                                 inputmode="numeric" pattern="[0-9]{4,8}" required
                                                 aria-describedby="codeHelp" />
-                                            <button class="btn btn-outline-secondary" type="button" id="requestCodeBtn">
-                                                Request code
+                                            <button class="btn btn-outline-secondary form-control-right-btn"
+                                                type="button" id="requestCodeBtn">
+                                                Code
                                             </button>
                                         </div>
-                                        <div id="codeHelp" class="form-text">Enter the code sent to your phone.</div>
                                         <div class="invalid-feedback">Enter a valid code (4–8 digits).</div>
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label for="registerPassword" class="form-label">Password</label>
+                                    <div class="mb-3 input-icon">
                                         <input type="password" class="form-control" id="registerPassword"
-                                            name="password" required minlength="6" />
+                                            name="password" placeholder="Password" aria-label="Password" required
+                                            minlength="6" />
+                                        <i class="fa-solid fa-lock form-control-icon" aria-hidden="true"></i>
                                         <div class="invalid-feedback">Please enter a password (min 6 characters).</div>
                                     </div>
-
-                                    <div class="mb-3">
-                                        <label for="registerPasswordConfirm" class="form-label">Confirm password</label>
+                                    <div class="mb-3 input-icon">
                                         <input type="password" class="form-control" id="registerPasswordConfirm"
-                                            name="passwordConfirm" required minlength="6" />
+                                            name="passwordConfirm" placeholder="Confirm password"
+                                            aria-label="Confirm password" required minlength="6" />
+                                        <i class="fa-solid fa-lock form-control-icon" aria-hidden="true"></i>
                                         <div class="invalid-feedback">Passwords must match.</div>
                                     </div>
 
                                     <div class="form-check mb-3">
                                         <input class="form-check-input" type="checkbox" id="ageConfirm" required />
-                                        <label class="form-check-label" for="ageConfirm">
-                                            I confirm I am at least 18 years old
+                                        <label class="form-check-label small" for="ageConfirm">
+                                            I confirm that I meet the age requirement and agree to the terms and privacy
+                                            policy.
                                         </label>
                                         <div class="invalid-feedback">You must confirm your age to continue.</div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-success w-100">Register</button>
+                                    <button type="submit" class="btn btn-gold-alt w-100">Register</button>
+
+                                    <div class="d-flex align-items-center my-3">
+                                        <hr class="flex-grow-1 m-0 opacity-25">
+                                        <span class="mx-3 small text-muted">or</span>
+                                        <hr class="flex-grow-1 m-0 opacity-25">
+                                    </div>
+
+                                    <div class="d-flex justify-content-center align-items-center mt-3 mb-3">
+                                        <div class="small">Already have an account? <a href="">Login</a></div>
+                                    </div>
                                 </form>
                             </div>
 
