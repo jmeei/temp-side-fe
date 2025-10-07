@@ -10,7 +10,7 @@ primary = #cead78
   --bs-secondary-color: rgb(255 255 255 / 30%);
 }
 
-a {
+a.with-border {
   text-decoration: none;
   border-bottom: 1px solid var(--bs-primary);
 }
